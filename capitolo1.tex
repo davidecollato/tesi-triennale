@@ -1,0 +1,283 @@
+\chapter{Teorema della funzione implicita}
+
+\newtheorem{definizione}{Definizione}[section]
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{esempio}{Esempio}[section]
+\newtheorem{osservazione}{Osservazione}[section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Teorema delle contrazioni}
+
+In questo capitolo enunceremo e dimostreremo il teorema delle contrazioni con dipendenza da parametro, che ci servirà nella dimostrazione del teorema della funzione inversa.
+
+Sia $\Lambda$ uno spazio metrico, $X$ uno spazio metrico completo. \\ Data una mappa $\Phi : \Lambda \times X \rightarrow X$, per ogni valore del parametro $\lambda \in \Lambda$ cerchiamo un punto fisso della funzione $x \mapsto \Phi(\lambda, x)$. Se $\Phi$ è una contrazione rispetto alla variabile $x$, l'esistenza e l'unicità della soluzione è garantita dal classico teorema del punto fisso.
+\begin{teorema}[Teorema delle contrazioni]
+Sia $\Lambda$ uno spazio metrico, $X$ uno spazio metrico completo e sia $\Phi : \Lambda \times X \rightarrow X$ una funzione tale che
+\begin{equation}\label{1.1}
+d(\Phi(\lambda,x), \Phi(\lambda,y)) \leq \kappa d(x, y) \ per \ ogni \ \lambda, x, y,
+\end{equation}
+per una qualche costante $\kappa < 1$ (Dunque $\Phi$ è una contrazione). Allora valgono le seguenti:
+\begin{enumerate}
+    \item Per ogni $\lambda \in \Lambda$, esiste un unico $x(\lambda) \in X$ tale che
+        \begin{equation}\label{1.2}
+            x(\lambda)=\Phi(\lambda,x(\lambda)).
+        \end{equation}
+    \item Per ogni $\lambda \in \Lambda, y \in X$ valgono
+        \begin{equation}\label{1.3}
+            d(x(\lambda), \Phi(\lambda,y))\leq\frac{\kappa}{1-\kappa}d(y,\Phi(\lambda,y)),
+        \end{equation}
+        \begin{equation}\label{1.4}
+            d(y, x(\lambda))\leq\frac{1}{1-\kappa}d(y, \Phi(\lambda,y)).
+        \end{equation}
+    \item Per un $\lambda_{0} \in \Lambda$ fissato, se $D \subseteq X$ la cui chiusura soddisfa
+        \begin{equation}\label{1.5}
+            \overline{D} \supseteq \Phi(\lambda_{0},X)=\left\{\Phi(\lambda_{0},x)\colon x\in X\right\}
+        \end{equation}
+    e se
+        \begin{equation}\label{1.6}
+            \lim_{\lambda \rightarrow \lambda_{0}}\Phi(\lambda,y)=\Phi(\lambda_{0},y) \ \ \text{per ogni} \ y \in D,
+        \end{equation}
+    allora
+        \begin{equation}\label{1.7}
+            \lim_{\lambda\rightarrow\lambda_{0}}x(\lambda)=x(\lambda_{0})
+        \end{equation}
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+Sia $y \in X$ fissato. Per ogni $\lambda$, consideriamo la successione
+$$
+y_{0}=y, \hspace{1cm} y_{1}=\Phi(\lambda, y_{0}), \hspace{1cm} \ldots, \hspace{1cm} y_{n+1}=\Phi(\lambda, y_{n}), \hspace{1cm} \ldots 
+$$
+Notiamo ora che
+$$
+d(y_{n+1},y_{n})=d(\Phi(\lambda,y_{n}), \Phi(\lambda,y_{n-1}))\leq\kappa d(y_{n},y_{n-1})
+$$
+Allora, procedendo per induzione su $n$ otteniamo che
+\begin{equation}\label{1.8}
+    d(y_{n+1},y_{n})\leq\kappa^{n} d(y_{1},y_{0}) = \kappa^{n} d(\Phi(\lambda,y), y).
+\end{equation}
+Poiché $\kappa <1$ la successione $y_{n}$ è di Cauchy (infatti ho che $d(y_{n+1},y_{n})$ è minore del termine generale di una serie convergente) e grazie alla completezza di $X$ converge ad un punto limite, che chiamiamo $x(\lambda)$. Siccome la funzione $\Phi$ è continua nella seconda variabile, abbiamo che
+$$
+x(\lambda)
+=\lim_{n\rightarrow +\infty}y_{n}
+=\lim_{n\rightarrow +\infty}\Phi(\lambda,y_{n-1})
+=\Phi(\lambda,\lim_{n\rightarrow +\infty}y_{n-1})
+=\Phi(\lambda,x(\lambda))$$
+e quindi vale \eqref{1.2}. L'unicità di $x(\lambda)$ si dimostra osservando che, se $x_{1}=\Phi(\lambda,x_{1})$ e $x_{2}=\Phi(\lambda,x_{2})$ allora \eqref{1.1} implica che
+\begin{align*}
+d(x_{1}, x_{2})&=d(\Phi(\lambda,x_{1}), \Phi(\lambda,x_{2})) \leq \kappa d(x_{1}, x_{2}) \\
+&\Longrightarrow (1-\kappa)d(x_{1}, x_{2})\leq 0 \\
+&\Longrightarrow d(x_{1}, x_{2}) = 0 \\
+&\Longrightarrow x_{1}=x_{2}.
+\end{align*}
+Osserviamo ora che \eqref{1.8} implica che
+$$
+d(y_{n+1}, \Phi(\lambda,y)) 
+\leq \sum_{j=1}^{n} d(y_{j+1}, y_{j}) 
+\leq \sum_{j=1}^{n}\kappa^{j} d(y, \Phi(\lambda,y))
+\leq \frac{\kappa}{1-\kappa} d(y, \Phi(\lambda,y)).
+$$
+Facendo tendere $n\rightarrow +\infty$ otteniamo la disuguaglianza \eqref{1.3}. La seconda disuguaglianza segue immediatamente.\\
+Per dimostrare l'ultima affermazione, osserviamo che \eqref{1.5} e la lipschitzianità della funzione $y \mapsto \Phi(\lambda,y)$ implicano che
+\begin{equation}\label{1.9}
+\lim_{\lambda \rightarrow \lambda_{0}}\Phi(\lambda,y)=\Phi(\lambda_{0},y) \ \text{per ogni $y\in\overline{D}$}
+\end{equation}
+Infatti, per ogni $y\in\overline{D}, \varepsilon >0$ possiamo scegliere un $\widetilde{y}\in D$ tale che $d(\widetilde{y}, y)\leq\varepsilon$. Quindi
+\begin{align*}
+\limsup_{\lambda\rightarrow\lambda_{0}}d(\Phi(\lambda,y), \Phi(\lambda_{0},y))
+& \leq \limsup_{\lambda\rightarrow\lambda_{0}}\,\{ \, 
+d(\Phi(\lambda,y), \Phi(\lambda,\widetilde{y})) \ + \\
+& \hspace{0.5cm} d(\Phi(\lambda,\widetilde{y}), \Phi(\lambda_{0},\widetilde{y})) + 
+d(\Phi(\lambda_{0},\widetilde{y}), \Phi(\lambda_{0},y)) \, \}\\
+& \leq \kappa\varepsilon + 0 + \kappa\varepsilon.
+\end{align*}
+Per l'arbitrarietà di $\varepsilon >0$, vale \eqref{1.9}. Utilizzando \eqref{1.9} e \eqref{1.4} con $y = x(\lambda_{0})=\Phi(\lambda_{0},x(\lambda_{0}))\in\overline{D}$, otteniamo
+$$
+\limsup_{\lambda\rightarrow\lambda_{0}}d(x(\lambda_{0}), x(\lambda))
+\leq \limsup_{\lambda\rightarrow\lambda_{0}}\frac{1}{1-\kappa}d(\Phi(\lambda_{0},x(\lambda_{0})), \Phi(\lambda,x(\lambda_{0}))) = 0.
+$$
+Ciò completa la dimostrazione.
+\end{proof}
+La dimostrazione e l'enunciato visti sono tratti da \cite{bressan_2000}, notando comunque che nel testo indicato, il teorema è enunciato (e dimostrato) in forma meno generale, considerando $X$ uno spazio di Banach. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Teorema della funzione implicita}
+In questa sezione enunceremo e dimostreremo il teorema della funzione implicita nel caso generale di $\mathbb{R}^{p}\times\mathbb{R}^{q}$. Ma per fare ciò abbiamo bisogno del teorema della funzione inversa, di cui riporteremo la dimostrazione, che fa uso del teorema del punto fisso dimostrato nella sezione precedente.
+\begin{teorema}[Teorema della funzione inversa]
+Sia $f:\mathcal{U}(0) \subset \mathbb{R}^{n} \rightarrow \mathbb{R}^{n}$ di classe $C^{1}$ e tale che $f(0)=0$ e la matrice jacobiana di $f$ in 0, indicata con $Df(0)$, sia invertibile. Allora esistono $\eta, \rho > 0$ e un'unica funzione $g:\overline{B_{\eta}(0)}\rightarrow\overline{B_{\rho}(0)}$ tale che per ogni $z \in \overline{B_{\eta}(0)}$ si ha che 
+\begin{equation}\label{1.10}
+f(g(z))=z.
+\end{equation}
+Inoltre se $f \in C^{k}\left(\mathcal{U}(0)\right)$ si ha che $g\in C^{k}\left(\overline{B_{\eta}(0)}\right)$ con $k\geq 1$. Se la derivata k-esima di $f$ è lipschitziana allora anche quella di $g$ lo è e si ha che
+\begin{equation}\label{1.11}
+Dg(z)=Df(g(z))^{-1}.
+\end{equation}
+\end{teorema}
+\begin{proof}
+Sia $w(\tau)= \sup\limits_{\|x\|\leq\tau}\|Df(x)-Df(0)\|$, per la continuità di $Df$ allora si ha che $\lim\limits_{\tau\rightarrow 0}w(\tau)=0.$ Quindi esiste un $\rho >0$ tale che $\overline{B_{\rho}(0)}\subset\mathcal{U}(0)$ e $w(\rho)\leq\frac{1}{4M}$ con $M = \left\|Df(0)^{-1}\right\|$ e $Df(x)$ non singolare in $\overline{B_{\rho}(0)}$.\\
+Poniamo quindi $\eta = \frac{\rho}{4M}$ e definiamo la funzione $G:\overline{B_{\rho}(0)}\times\overline{B_{\eta}(0)}\rightarrow\mathbb{R}^{n}$ 
+\begin{equation*}
+G(x,z)=x-Df(0)^{-1}\left[f(x)-z\right].
+\end{equation*}
+Mostriamo che in realtà $G:\overline{B_{\rho}(0)}\times\overline{B_{\eta}(0)}\rightarrow\overline{B_{\rho}(0)}$. Infatti per ogni tanto $x\in\overline{B_{\rho}(0)}$ e $z\in\overline{B_{\eta}(0)}$ si ha che
+\begin{align*}
+\|G(x,z)\| & = \|x-Df(0)^{-1}\left[f(x)-z\right]\| \\
+         & = \|x-Df(0)^{-1}\int_{0}^{1}(Df(sx)x-z) \, ds\|  \\
+         & \leq \|x-x-Df(0)^{-1}\int_{0}^{1}[Df(sx)-Df(0)]\,x \, ds\| + M\|z\| \\
+         & \leq Mw(\rho)\|x\|+M\eta \\ 
+         & \leq M\frac{1}{4M}\rho+M\frac{1}{4M}\rho \ = \ \frac{1}{2}\rho \ \le \ \rho.
+\end{align*}
+Mostriamo ora che per ogni $x\in\overline{B_{\rho}(0)}$ la mappa $x\mapsto G(x,z)$ è una contrazione.
+\begin{align*}
+\|G(x',z)-G(x'',z)\| & = \|x'-x''-Df(0)^{-1}[f(x')-f(x'')]\| \\
+                   & = \|x'-x''-Df(0)^{-1}\int_{0}^{1}Df(x''+s(x'-x''))(x'-x'') \, ds\| \\
+                   & \leq \| Df(0)^{-1}\| \, \| \int_{0}^{1}[ Df(0) - Df(x'' + s(x'-x''))](x'-x'')\, ds\| \\
+                   & \leq Mw(\rho)\|x'-x''\| \\
+                   & \leq M\frac{1}{4M}\|x'-x''\| \ = \ \frac{1}{4}\|x'-x''\|.
+\end{align*}
+Dunque per il teorema delle contrazioni dipendenti da parametro, poiché $z\mapsto G(x,z)$ è continua, per ogni $x\in\overline{B_{\rho}(0)}$ esiste un unico $x(z)$ con $z\mapsto x(z)$ continua tale che
+\begin{equation*}
+G(x(z),z)=x(z)
+\end{equation*}
+cioè 
+\begin{align*}
+x(z)-Df(0)^{-1}[f(x(z))-z] & = x(z) \\ \Rightarrow
+f(x(z)) & = z
+\end{align*}
+e la funzione $g$ dell'enunciato cercata è proprio $x(z)$.\\
+Dimostriamo ora che $g=x(z)$ è differenziabile. Sappiamo già che è continua per cui consideriamo
+\begin{equation*}
+f(g(z+h))-f(g(z)) = z+h-z = h
+\end{equation*}
+Definiamo ora
+\begin{equation*}
+A(h) = \int_{0}^{1}Df(g(z)+\sigma (g(z+h)-g(z))\,d\sigma
+\end{equation*}
+allora posso scrivere che
+\begin{equation*}
+    f(g(z+h))-f(g(z)) = A(h) \cdot [g(z+h)-g(z)].
+\end{equation*}
+Per la continuità di $g$ si ha che $g(z+h)\rightarrow g(z)$ per $h\rightarrow 0$ e quindi $A(h)\rightarrow Df(g(z))$ per $h\rightarrow 0$.
+Abbiamo perciò
+\begin{align*}
+g(z+h)-g(z)=A(h)^{-1}h & = Df(g(z))^{-1}h+[A(h)^{-1}-Df(g(z))^{-1}]h \\
+                         & = Df(g(z))^{-1}h+\varepsilon(h)h
+\end{align*}
+con $\varepsilon(h)\rightarrow 0$ per $h\rightarrow 0$. Abbiamo quindi mostrato che $g$ è differenziabile con matrice jacobiana uguale a
+\begin{equation*}
+Dg(z)=Df(g(z))^{-1}.
+\end{equation*}
+Dalla formula precedente se $f\in C^{k}$ con $k\geq 1$ allora automaticamente anche $g\in C^{k}$.
+\end{proof}
+Quello che afferma il teorema (intuitivamente) è che in un intorno sufficientemente piccolo, esiste la funzione inversa. \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Prima di dimostrare il teorema nel caso più generale, enunciamolo in $\mathbb{R}^{2}$.
+\begin{teorema}
+Sia $A \times B$ un aperto di $\mathbb{R}^{2}$, $f : A\times B \rightarrow \mathbb{R}$ una funzione di classe $C^{1}(A \times B)$ e sia $(\overline{x}, \overline{y}) \in A\times B$. Supponiamo:
+\begin{itemize}
+    \item $f(\overline{x},\overline{y})=0$.
+    \item $\frac{\partial}{\partial y} f(\overline{x},\overline{y}) \neq 0$.
+\end{itemize}
+Allora esiste un intorno del punto $\overline{x}$, $\mathcal{U}(\overline{x})$, contenuto in A e un intorno del punto $\overline{y}$, $\mathcal{U}(\overline{y})$, contenuto in B dove è definita una ed una sola funzione $y = \varphi(x)$ a valori in $\mathcal{U}(\overline{y})$ tale che $f(x,\varphi(x))=0$ per ogni $x \in \mathcal{U}(\overline{x})$.\\
+Inoltre $\varphi(x)$ è continua e derivabile in $\mathcal{U}(\overline{x})$ e vale che 
+\begin{equation}
+\varphi'(x)=-\frac{\frac{\partial f}{\partial x}(x,\varphi(x))}{\frac{\partial f}{\partial y}(x,\varphi(x))}.
+\end{equation}
+per ogni $x\in\mathcal{U}(\overline{x})$.
+\end{teorema}
+Vale ovviamente un enunciato analogo nel caso in cui $\frac{\partial f}{\partial x}(\overline{x},\overline{y}) \neq 0$.
+Enunciamo ora e dimostriamo il teorema della funzione implicita (detto anche teorema del Dini) nel caso più generale di $\mathbb{R}^{p}\times\mathbb{R}^{q}$. \\
+Useremo d'ora in poi la seguente notazione: indicheremo con $D_{1}F$ la matrice jacobiana della funzione $F$ rispetto la prima variabile, $D_{2}F$ la matrice jacobiana della funzione $F$ rispetto la seconda variabile e così via.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{teorema}[Teorema della funzione implicita]
+Siano $U\subset\mathbb{R}^{p}$ e $V\subset\mathbb{R}^{q}$ aperti e $F:U\times V\rightarrow\mathbb{R}^{q}, F\in C^{k}$ con $k\geq 1$. Se $F(\overline{x},\overline{y})=0$ e $\det D_{2}F(\overline{x},\overline{y})\neq 0$ allora esistono due intorni sferici $B_{\rho}^{1}(\overline{x}), B_{\eta}^{2}(\overline{y})$ e un'unica funzione $\varphi: B_{\rho}^{1}(\overline{x}) \longrightarrow B_{\eta}^{2}(\overline{y})$, $\varphi\in C^{k}$ tale che $\varphi(\overline{x})=\overline{y}$ e $F(x,\varphi(x))=0$ per ogni $x\in\mathcal{U}(\overline{x})$. Inoltre vale che
+\begin{equation}
+D\varphi(x)=-[D_{2}F(x,\varphi(x))]^{-1}D_{1}F(x,\varphi(x)).
+\end{equation}
+\end{teorema}
+Da questa formula si vede che se la $k$-esima derivata di $F$ è lipschitziana allora lo è anche la derivata $k$-esima di $\varphi$.
+\begin{proof}
+Sia \ $G:\mathcal{U}(0)\subset\mathbb{R}^{p+q}\rightarrow\mathbb{R}^{p+q}$ con $\mathcal{U}(0) = (U -\overline{x}) \times (V - \overline{y})$ data da $G(s,t)=\begin{pmatrix}s\\F(\overline{x}+s,\overline{y}+t)\end{pmatrix}$. Allora $G(0,0) = \begin{pmatrix}0\\F(\overline{x},\overline{y})\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}$ e $D_{(1,2)}G(0,0)=\begin{pmatrix}\mathds{1} & 0\\D_{1}F(\overline{x},\overline{y}) & D_{2}F(\overline{x},\overline{y})\end{pmatrix}$ con $\det D_{(1,2)}G(0,0) = \det D_{2}F(\overline{x},\overline{y})\neq 0$. Per cui per il teorema della funzione inversa, esiste una funzione $g:B_{\rho}^{1}(0)\times B_{\eta}^{2}(0)\rightarrow\mathcal{U}(0)$ con $B_{\rho}^{1}(0)\subset\mathbb{R}^{p}$ e $B_{\eta}^{2}(0)\subset\mathbb{R}^{q}$ data da $g(z)=(g_{1}(z_{1},z_{2}),g_{2}(z_{1},z_{2}))$ tale che 
+\begin{equation*}
+G(g(z))=z, \ g\in C^{k} \ \text{e} \ Dg(z)=D_{(1,2)}G(g(z))^{-1}.
+\end{equation*}
+Per cui abbiamo che $g_{1}(z_{1},z_{2})=z_{1}$ \ e \ $F(\overline{x}+g_{1}(z_{1},z_{2}),\overline{y}+g_{2}(z_{1},z_{2}))=z_{2}$ per ogni $(z_{1},z_{2})\in B_{\rho}^{1}(0)\times B_{\eta}^{2}(0)$. Con $z_{2}=0$ si ha che $F(\overline{x}+z_{1},\overline{y}+g_{2}(z_{1},0)) = 0$ e ponendo $x=\overline{x}+z_{1}$ e $\varphi(x)=\overline{y}+g_{2}(x-\overline{x},0)$ si ha che per ogni $x\in B_{\rho}(0)$
+\begin{equation*}
+F(x,\varphi(x))=0 \ \text{con} \ \varphi\in C^{k} \ \text{e} \ \varphi(\overline{x})=\overline{y}.
+\end{equation*}
+Per calcolare $D_{x}\varphi(x)$ notiamo che per $z_{2}=0$
+\begin{align*}
+Dg(z)=D_{(1,2)}G(g(z))^{-1} & = \begin{pmatrix}\mathds{1} & 0 \\ D_{1}F(\overline{x}+g_{1},\overline{y}+g_{2}) & D_{2}F(\overline{x}+g_{1},\overline{y}+g_{2})\end{pmatrix}^{-1}\\ \\
+                                & = \begin{pmatrix}\mathds{1} & 0 \\ 
+ -D_{2}F(x,\varphi(x))^{-1}D_{1}F(x,\varphi(x)) & D_{2}F(x,\varphi(x))^{-1}\end{pmatrix}
+\end{align*}
+e quindi $D\varphi(x)=D_{1}g_{2}(x-\overline{x},0)=-D_{2}F(x,\varphi(x))^{-1}D_{1}F(x,\varphi(x))$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Funzione implicita con parametro}
+
+In questa sezione dimostreremo il teorema della funzione implicita con dipendenza da un parametro arbitrario in un insieme compatto. Prima di fare ciò, dimostriamo una versione più generale del teorema della funzione inversa, quella in cui la funzione in considerazione dipende da un parametro, che ci sarà utile, come nella controparte "semplice", nella dimostrazione del teorema della funzione implicita. \\
+
+\begin{teorema}[Teorema della funzione inversa con dipendenza da parametro]
+Sia $F:A\times B\rightarrow\mathbb{R}^{n}$ con $A\subset\mathbb{R}^{m}$, $B\subset\mathbb{R}^{n}$, $F\in C^{k}$, $k\geq 1$, $K\subset A$ un compatto e sia
+\begin{itemize}
+\item $F(w,0) = 0$ per ogni $w \in K$.
+\item $\det D_{2}F(w,0)\neq0$ per ogni $w\in K$.
+\end{itemize}
+Allora esistono $U, V, W$ aperti con $K\subset U\subset A$, $0\in V\subset B$, $0\in W\subset\mathbb{R}^{n}$ e $G\colon U\times W\rightarrow V, \ G\in C^{k}$ tali che se $w\in U, \ x\in V$ e $z\in W$ allora
+\begin{equation}
+F(w,x)=z \Longleftrightarrow G(w,z)=x.
+\end{equation}
+In altre parole
+\begin{equation}
+F(w,G(w,z))=z \text{ \ per ogni \ } w\in U, \text{ \ per ogni \ } z\in W.
+\end{equation}
+Cioè l'aperto W su cui è definita la funzione inversa è uniforme rispetto al parametro $w\in U$.
+\end{teorema}
+\begin{proof}
+Sia $H(w,x,z)=F(w,x)-z$. Fissiamo $w_{0}\in K$, poiché $H(w_{0},0,0)=F(w_{0},0)-0=0$ e $D_{2}H(w_{0},0,0)=D_{2}F(w_{0},0)$ allora per il teorema della funzione implicita esistono $U_{w_{0}}, V_{w_{0}}, W_{w_{0}}$ intorni sferici con $w_{0}\in U_{w_{0}}, 0\in V_{w_{0}}, 0\in W_{w_{0}}$ e una funzione $G^{(w_{0})}\colon U_{w_{0}}\times W_{w_{0}}\rightarrow V_{w_{0}}$ tale che per ogni $(w,z)\in U_{w_{0}}\times W_{w_{0}}$ si ha che $H(w,G^{(w_{0})}(w,z),z)=0$ inoltre $G^{(w_{0})}$ è di classe $C^{k}$ \ (anche in $w$). \\
+Per la compattezza di $K$ esiste $w_{1}, \ldots, w_{k}\in K$ ed esistono $U_{w_{i}}, V_{w_{i}}, W_{w_{i}}$ con $w_{i}\in U_{w_{i}}, 0\in V_{w_{i}}$ e $0\in W_{w_{i}}$ ed $G^{w_{i}}\colon U_{w_{i}}\times W_{w_{i}}\rightarrow V_{w_{i}}$ con le proprietà sopra descritte tali che $K\subset\bigcup_{i=1}^{k}U_{w_{i}} = U$.
+Siano $W = \bigcap_{i = 1}^{k}W_{w_{i}}, V = \bigcup_{i=1}^{k}V_{w_{i}}$ e $G: U\times W \rightarrow V$ definita nel seguente modo: Se $(w,z)\in U\times W$ sia $i\in\{1,...,k\}$ con $w\in U_{w_{i}}$ e $z\in W_{w_{i}}$ per cui definiamo
+\begin{equation*}
+G(w,z) = G^{(w_{i})}(w,z).
+\end{equation*}
+La definizione è ben posta perché se $w\in U_{w_{j}}$ con $j\neq i$ allora $V_{w_{i}}\subseteq V_{w_{j}}$ oppure $V_{w_{j}}\subseteq V_{w_{i}}$ essendo entrambi intorni sferici di zero. Supponendo $V_{w_{i}}\subseteq V_{w_{j}}$ allora ho che $G^{(w_{j})}:U_{w_{j}}\times W_{w_{j}}\rightarrow V_{w_{j}}$ è unica ma, per quanto detto prima, abbiamo che $G^{(w_{i})}(w,z)\in V_{w_{j}}$. Allora necessariamente vale che $G^{(w_{i})}(w,z) = G^{(w_{j})}(w,z)$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Enunciamo ora e dimostriamo il teorema della funzione implicita in cui è presente un parametro in un insieme compatto.
+\begin{teorema}[Teorema della funzione implicita con dipendenza da parametro]
+Siano $U\subset\mathbb{R}^{p}, \ V\subset\mathbb{R}^{m}, \ \Omega\subseteq\mathbb{R}^{m}$ aperti e sia $F\colon \Omega\times U\times V\rightarrow\mathbb{R}^{m}$ una funzione $C^{k}, \ k\geq 1$. Sia $w\mapsto (\overline{x}_{w},\overline{y}_{w})\in U\times V$ funzione $C^{k}$ tale che $F(w,\overline{x}_{w},\overline{y}_{w})=0$ per ogni $w\in\Omega$. Se $D_{3}F(w,\overline{x}_{w},\overline{y}_{w})$ è invertibile per ogni $w\in K\subset\Omega$ con $K$ compatto, allora esiste $\delta >0$ e una funzione $C^{k}$ data da $(w,u)\mapsto\varphi(w,u)$ tale che
+\begin{equation}
+\varphi(w,\overline{x}_{w})=\overline{y}_{w} \ \ \textit{e} \ \ F(w,x,\varphi(w,x))=0
+\end{equation}
+per ogni $w\in K$ e $\|x-\overline{x}_{w}\|\leq\delta$.
+\end{teorema}
+\begin{proof}
+Definiamo $G(w,s,t)=\begin{pmatrix}s\\F(w,\overline{x}_{w}+s,\overline{y}_{w}+t)\end{pmatrix}$ e sia \\$T_{\tau}=\left\{(w,x,y):w\in K \ \|x-\overline{x}_{w}\|<\tau \ \|y-\overline{y}_{w}\|<\tau\right\}$. Allora per $\tau$ piccolo abbiamo che $T_{\tau}\subset K\times U\times V$ e $G:K\times B^{1}_{\tau}(0)\times B^{2}_{\tau}(0) \rightarrow\mathbb{R}^{m+p}$ con $G(w,0,0)=\begin{pmatrix}0\\F(w,\overline{x}_{w},\overline{y}_{w})\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}$
+e
+\begin{align*}
+\det D_{(2,3)}G(w,0,0) & =
+\left\vert\begin{pmatrix}\mathds{1} & 0\\D_{2}F(w,\overline{x}_{w},\overline{y}_{w}) & D_{3}F(w,\overline{x}_{w},\overline{y_{w}})\end{pmatrix}\right\vert \\ & =
+\det D_{3}F(w,\overline{x}_{w},\overline{y}_{w})\neq 0.
+\end{align*}
+Per cui applicando il teorema della funzione inversa con dipendenza da un parametro in un insieme compatto, esiste $\rho >0$ e $g\in C^{k}$ tale che $G(w,g_{1}(w,z),g_{2}(w,z))=z$ per ogni $z=(z_{1},z_{2})$ con $\|z_{1}\|<\rho, \ \|z_{2}\|<\rho$ cioè 
+\begin{equation*}
+g_{1}(w,z)=z_{1} \ \Longrightarrow \
+F(w,\overline{x}_{w}+z_{1},\overline{y}_{w}+g_{2}(w,z_{1},z_{2}))=z_{2}
+\end{equation*}
+con $x=\overline{x}_{w}+z_{1}, z_{2}=0$ e $\varphi(w,x)=\overline{y}_{w}+g_{2}(w,x-\overline{x}_{w},0)$. Quindi si ha che $F(w,x,\varphi(w,x))=0$ per ogni $x$ con $\|x-\overline{x}_{w}\|<\rho$ e $w\in K$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

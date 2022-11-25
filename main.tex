@@ -1,0 +1,73 @@
+\documentclass[11pt, a4paper, oneside, openany]{book}
+% Margini (4cm a sx, 2.5cm a dx, 2.5cm in alto, 2.5cm in basso)
+%\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm, centering, head=21.75 pt]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{dsfont}
+\usepackage{graphicx, subfigure}
+\usepackage[absolute]{textpos}	
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{caption}
+\usepackage{titlesec} % per la formattazione dei titoli delle sezioni, capitoli etc.
+\usepackage{float} % per il posizionamento delle immagini
+\usepackage{latexsym}
+\usepackage{tikz}
+\usepackage{pgfplots} 
+\pgfplotsset{compat=newest}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\linespread{1.5}
+
+\title{Corpo Tesi}
+\author{Davide Collato}
+\date{July 2022}
+
+\begin{document}
+
+\include{copertina2.tex}
+\thispagestyle{empty}
+
+
+
+\phantom{}
+\eject
+%dedica
+\vspace*{\fill}
+\begin{flushright}
+\textit
+{
+A me stesso.
+}
+\end{flushright}
+\vspace{\stretch{2}}
+%dedica
+\thispagestyle{empty}
+
+\phantom{}
+\eject
+\thispagestyle{empty}
+
+\frontmatter
+
+\include{introduzione.tex}
+\thispagestyle{empty}
+
+\tableofcontents
+\newpage
+\thispagestyle{empty}
+
+\mainmatter
+
+\include{capitolo1.tex}
+
+\include{capitolo2.tex}
+\thispagestyle{empty}
+\backmatter
+
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+
+\end{document}
