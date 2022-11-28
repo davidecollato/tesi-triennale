@@ -5,11 +5,12 @@ Questa repository contiene la mia tesi triennale in matematica, dal titolo **Il 
 ## Abstract
 Questo elaborato ha come scopo quello di dimostrare l'esistenza della soluzione generale del problema di Riemann, ossia trovare una soluzione debole del seguente sistema di leggi di conservazione
 
-<img src="https://latex.codecogs.com/svg.image?\large&space;\partial_{t}u&plus;\partial_{x}f(u)=0" title="https://latex.codecogs.com/svg.image?\large \partial_{t}u+\partial_{x}f(u)=0" />
+$$\large{\partial_{t}u+\partial_{x}f(u)=0,}$$
 
 con dato iniziale una funzione costante a tratti, della forma
 
-<img src="https://latex.codecogs.com/svg.image?\large&space;u(t,x)=\left\{\begin{matrix}u^{-}\text{&space;se&space;}&space;x<0,\\u^{&plus;}\text{&space;se&space;}&space;x>0,&space;\\\end{matrix}\right." title="https://latex.codecogs.com/svg.image?\large u(t,x)=\left\{\begin{matrix}u^{-}\text{ se } x<0,\\u^{+}\text{ se } x>0, \\\end{matrix}\right." />
+$$\large{u(0,x)=\begin{cases}u^{-}\text{ se } x<0,\\
+u^{+}\text{ se }x>0.\end{cases}}$$
 
 Esso è suddiviso in due capitoli.
 Nel primo, preliminare per il secondo, lo scopo sarà quello di enunciare e dimostrare il teorema della funzione implicita nel caso generale in cui si ha dipendenza da un parametro. Per fare ciò avremo però bisogno di altri teoremi preliminari, tra i quali il teorema delle contrazioni e il teorema della funzione inversa (sia senza dipendenza da una parametro, sia con).
